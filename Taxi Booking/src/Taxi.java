@@ -1,7 +1,7 @@
 import java.util.*;
 class Taxi {
     int id;
-    char currentPoint = 'A'; // Initially all taxis start at point A
+    char currentPoint = 'A'; 
     int totalEarnings = 0;
     List<Booking> bookings = new ArrayList<>();
 

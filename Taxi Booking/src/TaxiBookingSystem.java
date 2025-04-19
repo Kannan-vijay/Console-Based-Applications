@@ -3,8 +3,7 @@ import java.util.*;
 public class TaxiBookingSystem {
     static List<Taxi> taxis = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
-    static int customerCounter = 1; // Auto-incrementing Customer ID
-
+    static int customerCounter = 1; 
     public static void main(String[] args) {
         System.out.print("Enter number of taxis: ");
         int numTaxis = sc.nextInt();
@@ -38,7 +37,7 @@ public class TaxiBookingSystem {
     }
 
     public static void bookTaxi() {
-        int customerId = customerCounter++; // Automatically increment Customer ID 
+        int customerId = customerCounter++;
         System.out.print("Enter Pickup Point (A-F): ");
         char pickup = sc.next().toUpperCase().charAt(0);
         System.out.print("Enter Drop Point (A-F): ");
