@@ -1,4 +1,4 @@
-class Booking {
+public class Booking {
     int bookingId, customerId, pickupTime, dropTime, amount;
     char from, to;
 
