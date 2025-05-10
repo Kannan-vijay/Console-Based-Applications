@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class main {
+public class app {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         char[][] board = new char[3][3];
@@ -15,14 +15,10 @@ public class main {
             System.out.println("Enter the Coloumn Number (1 - 3) to place : ");
             int col = sc.nextInt();
             sc.nextLine();
-            placeElement(board, player, row-1, col-1);
-            player = (player == 'O') ? 'X' : 'O';
-            System.out.println("Enter Any number To Continue the Game : ");
-            char exit = sc.next().charAt(0);
-            sc.nextLine();
-            if(!Character.isDigit(exit)){
+            if(placeElement(board, player, row-1, col-1)){
                 break;
             }
+            player = (player == 'O') ? 'X' : 'O';
         }
         sc.close();
     }
@@ -33,6 +29,9 @@ public class main {
         (board[0][2] == player && board[1][1] == player && board[2][0] == player)){
             return true;
         }
+        return false;
+    }
+    static boolean checkTieStatus(char[][] board){
         int count = 0;
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {
@@ -44,26 +43,27 @@ public class main {
         if (count == 9) {
             System.out.println("The Game Was Tie..!!!");
             System.out.println("Play Again..!!");
-            initialize(board);
-            displayBoard(board);
+            return true;
         }
         return false;
     }
-
-    static void placeElement(char[][] board,char player,int row,int col){
+    static boolean placeElement(char[][] board,char player,int row,int col){
         if(board[row][col] != ' '){
             System.out.println("The Place can be Already Occupied by Player : "+board[row][col]);
             displayBoard(board);
-            return;
+            return false;
         }
         board[row][col] = player;
         displayBoard(board);
         if (checkStatus(board, row, col, player)) {
             System.out.println("Congratulations....");
             System.out.println("Player "+player+" Wins the Game..!!!");
-            initialize(board);
-            displayBoard(board);
+            return true;
         }
+        if(checkTieStatus(board)){
+            return true;
+        }
+        return false;
     }
     static void displayBoard(char[][] board){
         System.out.println("\n");
